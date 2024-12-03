@@ -11,10 +11,14 @@
             // Get input file
             string inputFile = Path.Combine(SolutionDirectory, "input.txt");
             string rawInput = File.ReadAllText(inputFile);
+            if (rawInput.EndsWith("\n")) rawInput = rawInput[..^1];
             string[] inputArray = rawInput.Split("\n");
 
+            Console.WriteLine($"Day {Day:D2} - {Year}");
             // Solve Part one
-            SolvePartOne(inputArray);
+            Console.WriteLine("Part 1: " + SolvePartOne(inputArray));
+            // Solve Part two
+            Console.WriteLine("Part 2: " + SolvePartTwo(inputArray));
         }
     }
 }
