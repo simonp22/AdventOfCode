@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AdventOfCode._2024.Day01 {
+﻿namespace AdventOfCode._2024.Day01 {
     internal class Day01 : ISolution {
         public string SolvePartOne(string[] input) {
             // Separate into 2 lists
-            var orderedList1 = input.Select(line => line.Split("   ")[0]).Select(int.Parse).OrderBy(x => x);
-            var orderedList2 = input.Select(line => line.Split("   ")[1]).Select(int.Parse).OrderBy(x => x);
+            IOrderedEnumerable<int> orderedList1 = orderedList(input, 0);
+            IOrderedEnumerable<int> orderedList2 = orderedList(input, 1);
 
             int sum = Enumerable.Zip(orderedList1, orderedList2).Sum(x => Math.Abs(x.First - x.Second));
 
@@ -17,7 +11,17 @@ namespace AdventOfCode._2024.Day01 {
         }
 
         public string SolvePartTwo(string[] input) {
-            throw new NotImplementedException();
+            IOrderedEnumerable<int> orderedList1 = orderedList(input, 0);
+            IOrderedEnumerable<int> orderedList2 = orderedList(input, 1);
+
+            // Get counts in the right list
+            var countsList = orderedList2.GroupBy(x => x).ToDictionary(x => x.Key, x => x.Count());
+
+            int similarityScoreSum = orderedList1.Sum(x => countsList.ContainsKey(x) ? x * countsList[x] : 0);
+
+            return similarityScoreSum.ToString();
         }
+
+        IOrderedEnumerable<int> orderedList(string[]input, int column) { return input.Select(line => line.Split("   ")[column]).Select(int.Parse).OrderBy(x => x); }
     }
 }
