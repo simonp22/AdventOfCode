@@ -4,9 +4,6 @@ using System.Reflection;
 int year = DateTime.Today.Year;
 int day = DateTime.Today.Day;
 
-year = 2024;
-day = 1;
-
 try {
     if (args.Length != 0 && args.Length == 2) {
         year = Convert.ToInt32(args[0]);
