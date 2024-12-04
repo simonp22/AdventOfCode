@@ -1,15 +1,17 @@
 ﻿namespace AdventOfCode._2024.Day02 {
     internal class Day02 : ISolution {
-        public string SolvePartOne(string[] input) {
-            IEnumerable<int[]> samplesArray = input.Select(input => input.Split(" ").Select(int.Parse).ToArray());
+        public string SolvePartOne(string input) {
+            string[] lines = AdventHelper.LineSplitInput(input);
+            IEnumerable<int[]> samplesArray = lines.Select(input => input.Split(" ").Select(int.Parse).ToArray());
 
             int safeSamples = samplesArray.Count(SafeSample);
 
             return safeSamples.ToString();
         }
 
-        public string SolvePartTwo(string[] input) {
-            IEnumerable<int[]> samplesArray = input.Select(input => input.Split(" ").Select(int.Parse).ToArray());
+        public string SolvePartTwo(string input) {
+            string[] lines = AdventHelper.LineSplitInput(input);
+            IEnumerable<int[]> samplesArray = lines.Select(input => input.Split(" ").Select(int.Parse).ToArray());
 
             // Foreach sample, generate a list of all possible combinations with 1 element removed
             int problemDampenerSafeSamples = samplesArray.Count(samples => GenerateProblemDampenerSamples(samples).Any(SafeSample));
