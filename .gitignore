@@ -396,3 +396,7 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+input.txt
+/2024/Day03/input.txt
+/2024/Day02/input.txt
+/2024/Day01/input.txt
